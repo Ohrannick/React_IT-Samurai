@@ -1,0 +1,5 @@
+.dialogs {
+  color: blue;
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}

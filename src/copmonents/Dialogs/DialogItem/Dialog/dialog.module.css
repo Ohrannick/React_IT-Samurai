@@ -1,0 +1,20 @@
+.item img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+/* .item a {
+  text-decoration: none;
+  color: bisque;
+} */
+
+.item a {
+  padding-left: 10px;
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.item+.active {
+  color: goldenrod;
+}
