@@ -1,34 +1,32 @@
 import React from "react";
-import {
-  addMessageCreator,
-  updateNewMessageTextCreator,
-} from "../../../redux/dialog-reducer";
 import Message from "./Message/Message";
 import s from "./MyMessage.module.css";
 
 const MyMessage = (props) => {
-  // const newMessage = React.createRef();
+  let messagesElements = props.messages.map((m) => (
+    <Message message={m.message} id={m.id} />
+  ));
+
+  const newMessage = React.createRef();
 
   const addMessage = () => {
     if (props.newMessageText) {
-      props.dispatch(addMessageCreator());
+      props.addMessage();
     }
     return;
   };
 
-  const onMessageChange = (e) => {
-    let text = e.target.value;
-    props.dispatch(updateNewMessageTextCreator(text));
+  const onMessageChange = () => {
+    let text = newMessage.current.value;
+    props.updateNewMessageText(text);
   };
 
   return (
     <div className={s.messages}>
-      {props.messages.map((m) => (
-        <Message message={m.message} id={m.id} />
-      ))}
+      {messagesElements}
       <input
         onChange={onMessageChange}
-        // ref={newMessage}
+        ref={newMessage}
         value={props.newMessageText}
       ></input>
       <button onClick={addMessage}>Add message</button>

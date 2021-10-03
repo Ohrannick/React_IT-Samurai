@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Dialogs from "./copmonents/Dialogs/Dialogs";
 import Friends from "./copmonents/Friends/Friends";
 import Game from "./copmonents/Game/Game";
@@ -13,37 +13,19 @@ import "./index.css";
 
 const App = (props) => {
   return (
-    <BrowserRouter>
-      <div className="app-wrapper">
-        <Header />
-        <Navbar state={props.state.navbarPage} />
-        <div className="app-wrapper-content">
-          <Route
-            path="/profile"
-            render={() => (
-              <Profile
-                profilePage={props.state.profilePage}
-                dispatch={props.dispatch}
-              />
-            )}
-          />
-          <Route
-            path="/dialogs"
-            render={() => (
-              <Dialogs
-                dialogsPage={props.state.dialogsPage}
-                dispatch={props.dispatch}
-              />
-            )}
-          />
-          <Route path="/news" render={() => <News />} />
-          <Route path="/music" render={() => <Music />} />
-          <Route path="/setting" render={() => <Setting />} />
-          <Route path="/game" component={Game} />
-          <Route path="/friends" render={() => <Friends />} />
-        </div>
+    <div className="app-wrapper">
+      <Header />
+      <Navbar state={props.state.navbarPage} />
+      <div className="app-wrapper-content">
+        <Route path="/profile" render={() => <Profile store={props.store} />} />
+        <Route path="/dialogs" render={() => <Dialogs store={props.store} />} />
+        <Route path="/news" render={() => <News />} />
+        <Route path="/music" render={() => <Music />} />
+        <Route path="/setting" render={() => <Setting />} />
+        <Route path="/game" component={Game} />
+        <Route path="/friends" render={() => <Friends />} />
       </div>
-    </BrowserRouter>
+    </div>
   );
 };
 
