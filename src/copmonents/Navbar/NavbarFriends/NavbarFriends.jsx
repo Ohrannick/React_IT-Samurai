@@ -4,8 +4,8 @@ import s from "./NavbarFriends.module.css";
 const NavbarFriends = (props) => {
   return (
     <div className={s.friends}>
-      {props.state.friends.map((f) => (
-        <NavbarFriend id={f.id} name={f.name} img={f.img} />
+      {props.friends.map((f) => (
+        <NavbarFriend id={f.id} name={f.name} img={f.img} key={f.id}/>
       ))}
     </div>
   );
