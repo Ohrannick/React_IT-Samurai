@@ -4,7 +4,7 @@ import s from "./MyMessage.module.css";
 
 const MyMessage = (props) => {
   let messagesElements = props.messages.map((m) => (
-    <Message message={m.message} id={m.id} />
+    <Message message={m.message} id={m.id} key={m.id}/>
   ));
 
   const newMessage = React.createRef();
@@ -28,6 +28,7 @@ const MyMessage = (props) => {
         onChange={onMessageChange}
         ref={newMessage}
         value={props.newMessageText}
+        placeholder="Enter new message"
       ></input>
       <button onClick={addMessage}>Add message</button>
     </div>
