@@ -14,3 +14,22 @@
   height: 50px;
   padding-right: 20px;
 }
+
+.paginations {
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.paginations span {
+  padding-left: 5px;
+}
+
+.selectedPage {
+  font-weight: bold;
+}
+
+.followed {
+  background-color: chocolate;
+  color: white;
+}

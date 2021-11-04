@@ -11,10 +11,11 @@
 }
 
 .item .active {
-  color: gold;
+  color: rgb(132, 0, 255);
+  font-weight: bold;
 }
 
 .friends {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
 }

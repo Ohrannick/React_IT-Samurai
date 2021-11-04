@@ -1,67 +1,87 @@
-import React from 'react';
-import style from './Users.module.css'
+import React from "react";
+import style from "./Users.module.css";
+import userPhoto from "../../assets/images/image-2.jpeg";
+import { NavLink } from "react-router-dom";
+import { usersAPI } from "../../api/api";
 
 let Users = (props) => {
-  if (props.users.length === 0) {
-    props.setUsers([
-      {id: 3,
-      followed: false,
-      fullname: "Sveta",
-      img: "http://hypeava.ru/uploads/posts/2019-07/1563002947_1.jpg",
-      status: "I'm a Hugo Boss",
-      location: {
-        city: "Moskow",
-        country: "Russia",
-      },
-      },
-      {id: 4,
-        name: "Sasha",
-        followed: true,
-        img: "https://i.pinimg.com/736x/ec/47/62/ec47624e43faa7ebb8b5042b5158ab13.jpg",
-        status: "I'm a Boss",
-        location: {
-          city: "Minsk",
-          country: "Belarus",
-        },
-      },
-      {id: 5,
-        followed: false,
-        name: "Victor",
-        img: "https://www.meme-arsenal.com/memes/0978206358a772255b494b839659c3fa.jpg",
-        status: "I'm a little Boss",
-        location: {
-          city: "Kiev",
-          country: "Ukrain",
-        },
-      },
-    ])
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+
+  let pages = [];
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
   }
-  
+
   return (
     <div className={style.users}>
+      <div className={style.paginations}>
+        {pages.map((p) => {
+          return (
+            <span
+              className={props.currentPage === p && style.selectedPage}
+              key={p}
+              onClick={(e) => {
+                props.onPageChanged(p);
+              }}
+            >
+              {p}
+            </span>
+          );
+        })}
+      </div>
       {props.users.map((u) => (
         <div className={style.user} key={u.id}>
           <div>
-            <div> 
-              <img src={ u.img } className={style.avatar} alt="avatar" />
+            <div>
+              <NavLink to={"/profile/" + u.id}>
+                <img
+                  src={u.photos.small != null ? u.photos.small : userPhoto}
+                  className={style.avatar}
+                  alt="avatar"
+                />
+              </NavLink>
             </div>
             <div>
-              { u.followed 
-                ? <button onClick={ () => {props.follow(u.id)} } >Follow</button> 
-                : <button onClick={ () => {props.unfollow(u.id)} } >Unfollow</button> }
+              {u.followed ? (
+                <button
+                  className={style.followed}
+                  onClick={() => {
+                    usersAPI.userDelete(u.id).then((data) => {
+                      if (data.resultCode === 0) {
+                        props.unFollow(u.id);
+                      }
+                    });
+                  }}
+                >
+                  Follow
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    usersAPI.userPost(u.id).then((data) => {
+                      if (data.resultCode === 0) {
+                        props.follow(u.id);
+                      }
+                    });
+                  }}
+                >
+                  Unfollow
+                </button>
+              )}
             </div>
           </div>
           <div>
             <span>
-              <div> { u.fullname } </div>
-              <div> { u.status } </div>
+              <div> {u.name} </div>
+              <div> {u.status} </div>
             </span>
-              <div> { u.location.country } </div>
-              <div> { u.location.city } </div>
+            <div> {"u.location.country"} </div>
+            <div> {"u.location.city"} </div>
           </div>
-        </div>))}
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Users
+export default Users;
