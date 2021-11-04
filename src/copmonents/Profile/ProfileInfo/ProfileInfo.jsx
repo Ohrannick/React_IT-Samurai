@@ -1,7 +1,12 @@
-import React from 'react'
-import s from './ProfileInfo.module.css'
+import React from "react";
+import Preloader from "../../common/Preloader/Preloader";
+import s from "./ProfileInfo.module.css";
 
 const ProfileInfo = (props) => {
+  if (!props.profile) {
+    return <Preloader />;
+  }
+
   return (
     <div>
       <div>
@@ -11,14 +16,29 @@ const ProfileInfo = (props) => {
         />
       </div>
       <div>
-        <img
+        {/* <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf5AnZHQwWcN40OzuunkcUWVfdVmtLHmtGvqFe4lSBd-65uftHv8HNVX3FcJaOLP0vqac&usqp=CAU"
           alt="avatar"
-        />
-        <div className={s.description}>Description</div>
+        /> */}
+        <div className={s.description}>
+          <img src={props.profile.photos.small} alt={props.profile.fullName} />
+          <div>{`Мое имя: ${props.profile.fullName.toUpperCase()}`}</div>
+          <br />
+          <div>
+            <span>{`Обо мне: ${props.profile.aboutMe}`}</span>
+          </div>
+          <div>
+            <span>{`В поиске работы: ${
+              props.profile.lookingForJob ? " Yes" : " No"
+            }`}</span>
+          </div>
+          <div>
+            <span>{`Мой instagram: ${props.profile.contacts.instagram}`}</span>
+          </div>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProfileInfo
+export default ProfileInfo;
