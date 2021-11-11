@@ -16,10 +16,6 @@ const ProfileInfo = (props) => {
         />
       </div>
       <div>
-        {/* <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf5AnZHQwWcN40OzuunkcUWVfdVmtLHmtGvqFe4lSBd-65uftHv8HNVX3FcJaOLP0vqac&usqp=CAU"
-          alt="avatar"
-        /> */}
         <div className={s.description}>
           <img src={props.profile.photos.small} alt={props.profile.fullName} />
           <div>{`Мое имя: ${props.profile.fullName.toUpperCase()}`}</div>
