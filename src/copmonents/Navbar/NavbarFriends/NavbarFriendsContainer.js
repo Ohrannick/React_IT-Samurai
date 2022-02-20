@@ -3,7 +3,8 @@ import NavbarFriends from "./NavbarFriends";
 
 let mapStateToProps = (state) => {
   return {
-    friends: state.navbarPage.friends,
+    // friends: state.navbarPage.friends,
+    friends: state.usersPage.users,
   };
 };
 

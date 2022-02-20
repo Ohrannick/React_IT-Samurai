@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import Dialogs from "./copmonents/Dialogs/Dialogs";
 import Game from "./copmonents/Game/Game";
 import HeaderContainer from "./copmonents/Header/HeaderContainer";
+import Login from "./copmonents/Login/Login";
 import Music from "./copmonents/Music/Music";
 import Navbar from "./copmonents/Navbar/Navbar";
 import News from "./copmonents/News/News";
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/setting" render={() => <Setting />} />
         <Route path="/game" component={Game} />
         <Route path="/users" render={() => <UsersContainer />} />
+        <Route path="/login" render={() => <Login />} />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
-import React from 'react'
-import Dialog from './Dialog/dialog';
-import s from './DialogItem.module.css'
+import React from "react";
+import Dialog from "./Dialog/dialog";
+import s from "./DialogItem.module.css";
 
 const DialogItem = (props) => {
   return (
@@ -8,9 +8,8 @@ const DialogItem = (props) => {
       {props.dialogs.map((d) => (
         <Dialog name={d.name} id={d.id} img={d.img} key={d.id} />
       ))}
-    </div>   
+    </div>
   );
 };
 
-export default DialogItem
-
+export default DialogItem;
